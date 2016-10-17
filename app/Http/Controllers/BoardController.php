@@ -5,9 +5,18 @@ namespace LaForum\Http\Controllers;
 use Illuminate\Http\Request;
 use LaForum\Http\Requests;
 use LaForum\Models\Board;
+use LaForum\Repositories\BoardRepository;
+
 
 class BoardController extends Controller
 {
+
+    protected $board;
+
+    public function __construct(BoardRepository $board)
+    {
+       $this->board = $board;
+    }
 
     public function listing()
     {
