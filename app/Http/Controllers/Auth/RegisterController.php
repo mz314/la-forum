@@ -2,7 +2,7 @@
 
 namespace LaForum\Http\Controllers\Auth;
 
-use LaForum\User;
+use LaForum\Models\User;
 use Validator;
 use LaForum\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.

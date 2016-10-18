@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(LaForum\User::class, function (Faker\Generator $faker) {
+$factory->define(LaForum\Model\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [

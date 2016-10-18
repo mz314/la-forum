@@ -4,11 +4,25 @@ namespace LaForum\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use LaForum\Http\Requests;
-
 class HomeController extends Controller
 {
-    public function index() {
-        return View('home');
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+       
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('home');
     }
 }

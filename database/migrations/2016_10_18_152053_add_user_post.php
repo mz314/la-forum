@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTopicsTable extends Migration
+class AddUserPost extends Migration
 {
 
     /**
@@ -14,11 +14,9 @@ class CreateTopicsTable extends Migration
      */
     public function up()
     {
-        Schema::create('topics',
+        Schema::table('posts',
             function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('board_id');
-            $table->timestamps();
+            $table->integer('user_id');
         });
     }
 
@@ -29,6 +27,6 @@ class CreateTopicsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('topics');
+        //
     }
 }

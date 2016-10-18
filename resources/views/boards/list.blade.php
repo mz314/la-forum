@@ -8,7 +8,9 @@
         @foreach($boards as $board)
         <tr>
             <td>
-                {{$board->title}}
+                <a href="{{ URL::route('board', [$board->id]) }}">
+                    {{$board->title}}
+                </a>
             </td>
             <td>
                 {{$board->description}}

@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => LaForum\User::class,
+            'model' => LaForum\Models\User::class,
         ],
 
         // 'users' => [
