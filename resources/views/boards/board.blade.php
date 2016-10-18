@@ -6,6 +6,17 @@
 <h1>
     {{$board->title}}
 </h1>
+
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 {{ Form::open(['action' => 'BoardController@store']) }}
 <input type="text" name="title" placeholder="Title" /><br />
 <textarea name="text" placeholder="text"></textarea>

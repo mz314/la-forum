@@ -25,9 +25,9 @@ class TopicRepository extends Repository
         return $topic;
     }
 
-    public function createWithPost($board_id, $title, $text)
+    public function createWithPost($board_id, $user_id, $title, $text)
     {
-        $post = $this->postRepository->create($text);
+        $post = $this->postRepository->create($text, $user_id);
 
         $topic          = $this->create($board_id, $post->id, $title);
         $post->topic_id = $topic->id;

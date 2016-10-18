@@ -3,11 +3,10 @@
 namespace LaForum\Http\Controllers;
 
 use Illuminate\Http\Request;
-use LaForum\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use LaForum\Models\Board;
-use LaForum\Models\Topic;
-use LaForum\Models\Post;
 use LaForum\Repositories\BoardRepository;
+use LaForum\Http\Requests\TopicRequest;
 
 class BoardController extends Controller
 {
@@ -30,21 +29,22 @@ class BoardController extends Controller
     public function board($id)
     {
         $board = Board::find($id);
-        
+
         return View('boards.board', [
             'board' => $board,
         ]);
     }
 
-    public function store(Request $request)
+    public function store(TopicRequest $request)
     {
 
         $this->board->addTopic([
-            'board_id'=>$request->get('board_id'),
+            'board_id' => $request->get('board_id'),
             'title' => $request->get('title'),
-            'text' => $request->get('text')
+            'text' => $request->get('text'),
+            'user_id' => Auth::user()->id,
         ]);
-       
+
         return redirect()->route('board', [$request->get('board_id')]);
     }
 }
