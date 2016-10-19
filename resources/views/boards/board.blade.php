@@ -1,6 +1,8 @@
 @extends('base')
 
-@section('title', 'LaForum')
+@section('title')
+LaForum - {{$board->title}}
+@endsection
 
 @section('content')
 <h1>

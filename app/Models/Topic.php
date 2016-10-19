@@ -10,7 +10,7 @@ class Topic extends Model
 
     public function board()
     {
-        return $this->belongsTo('LaForum\Models\Board', 'foreign_key');
+        return $this->belongsTo('LaForum\Models\Board');
     }
 
     public function post()

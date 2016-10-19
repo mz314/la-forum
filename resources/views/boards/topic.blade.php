@@ -1,4 +1,9 @@
 @extends('base')
+
+@section('title')
+LaForum - {{$topic->board->title}} - {{$topic->title}}
+@endsection
+
 @section('content')
 <h1>
     {{$topic->title}}
