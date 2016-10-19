@@ -44,8 +44,11 @@ Route::get('logout', '\LaForum\Http\Controllers\Auth\LoginController@logout')->n
  * Admin
  */
 
-Route::group(['prefix' => '/admin', 'middleware' => ['role:admin']], function () {
-    Route::get('', [
+Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () {
+    Route::get('/', [
         'uses' => 'Admin\DashboardController@index'
     ]);
+    
+   Route::resource('boards', 'Admin\BoardController');
+    
 });

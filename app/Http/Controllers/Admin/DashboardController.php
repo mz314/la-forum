@@ -6,6 +6,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        die('admin index');
+         return view('admin.index', [
+            
+        ]);
     }
 }
