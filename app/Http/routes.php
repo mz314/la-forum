@@ -38,6 +38,14 @@ Route::group(['prefix' => '/profile'], function() {
 });
 
 Auth::routes();
-
-
 Route::get('logout', '\LaForum\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+/*
+ * Admin
+ */
+
+Route::group(['prefix' => '/admin', 'middleware' => ['role:admin']], function () {
+    Route::get('', [
+        'uses' => 'Admin\DashboardController@index'
+    ]);
+});
