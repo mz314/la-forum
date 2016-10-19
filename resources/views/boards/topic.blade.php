@@ -14,12 +14,12 @@
     @endforeach
 </div>
 
-<form method="POST">
-    <input type="hidden" name="parent" value="{{$topic->post->id}}" />
+{{ Form::open(['action' => 'TopicController@reply']) }}
+    <input type="hidden" name="parent_id" value="{{$topic->post->id}}" />
     <input type="hidden" name="topic_id" value="{{$topic->id}}" />
     <textarea name="text"></textarea>
     <button type="submit">
         Reply
     </button>
-</form>
+{{ Form::close() }}
 @endsection

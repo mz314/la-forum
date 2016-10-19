@@ -21,6 +21,9 @@ Route::get('/topic/{id}', [
 ])->name('topic');
 
 
+Route::post('/topic/reply', [
+    'uses'=>'TopicController@reply'
+]);
 
 Auth::routes();
 

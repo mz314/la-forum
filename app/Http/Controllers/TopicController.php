@@ -2,9 +2,11 @@
 
 namespace LaForum\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 use LaForum\Repositories\PostRepository;
 use LaForum\Repositories\TopicRepository;
-use LaForum\Models\Topic;
+use LaForum\Http\Requests\PostRequest;
 
 class TopicController extends Controller
 {
@@ -23,13 +25,17 @@ class TopicController extends Controller
 
         $topic = $this->topicRepository->findWithPosts($id);
 
-//        var_dump($topic->posts);
-//        die;
 
         return View('boards.topic', [
             'topic' => $topic,
         ]);
     }
-
+    
+    public function reply(PostRequest $request)
+    {
+        $this->postRepository->createReply($request->get('parent_id'), $request->get('text'), 
+            Auth::user()->id
+            );
+    }
     
 }

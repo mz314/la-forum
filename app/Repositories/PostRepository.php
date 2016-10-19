@@ -20,5 +20,20 @@ class PostRepository extends Repository
         return $post;
 
     }
+    
+    public function createReply($parent_id, $text, $user_id)
+    {
+        $parentPost = Post::find($parent_id);
+        
+        $post = new Post();
+        $post->parent_id = $parent_id;
+        $post->text = $text;
+        $post->topic_id = $parentPost->topic_id;
+        $post->user_id = $user_id;
+        
+        $post->save();
+        
+        return $post;
+    }
 }
 
