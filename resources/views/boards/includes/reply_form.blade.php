@@ -2,7 +2,8 @@
     {{ Form::open(['action' => 'TopicController@reply']) }}
     <input type="hidden" name="parent_id" value="{{$topic->post->id}}" />
     <input type="hidden" name="topic_id" value="{{$topic->id}}" />
-    <textarea name="text"></textarea>
+<!--    <textarea name="text"></textarea>-->
+    {{ Form::textarea('text') }}
     <button type="submit">
         Reply
     </button>

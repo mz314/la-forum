@@ -20,8 +20,9 @@ LaForum - {{$board->title}}
 @endif
 
 {{ Form::open(['action' => 'BoardController@store']) }}
-<input type="text" name="title" placeholder="Title" /><br />
-<textarea name="text" placeholder="text"></textarea>
+{{ Form::text('title') }}
+<br />
+{{ Form::textarea('text') }}
 <input type="hidden" name="board_id" value="{{$board->id}}" />
 <br />
 <button type="submit">
