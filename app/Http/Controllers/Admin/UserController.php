@@ -2,6 +2,7 @@
 
 namespace LaForum\Http\Controllers\Admin;
 
+use LaForum\Http\Requests\UserRequest;
 use LaForum\Repositories\UserRepository;
 use LaForum\Models\User;
 
@@ -29,5 +30,10 @@ class UserController extends Controller
         return view('admin.users.edit', [
             'user' => $user,
         ]);
+    }
+
+    public function update(User $user, UserRequest $request)
+    {
+        
     }
 }
