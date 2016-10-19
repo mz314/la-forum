@@ -36,6 +36,8 @@ class TopicController extends Controller
         $this->postRepository->createReply($request->get('parent_id'), $request->get('text'), 
             Auth::user()->id
             );
+        
+        return redirect()->route('topic', [$request->get('topic_id')]);
     }
     
 }

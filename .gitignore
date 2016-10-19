@@ -7,3 +7,5 @@ Homestead.yaml
 .env
 /nbproject
 /.vagrant
+/public/css/*
+/public/js/*

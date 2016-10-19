@@ -4,22 +4,16 @@
     {{$topic->title}}
 </h1>
 <div>
-    {{$topic->post->text}}
+    @include('boards.includes.topic_post', ['post' => $topic->post])
+
 </div>
 <div>Replies:</div>
 
-<div>
-    @foreach($topic->replies as $reply)
-        {{$reply->text}}
-    @endforeach
+<div class="replies">
+    @each('boards.includes.topic_post', $topic->replies, 'post')
 </div>
 
-{{ Form::open(['action' => 'TopicController@reply']) }}
-    <input type="hidden" name="parent_id" value="{{$topic->post->id}}" />
-    <input type="hidden" name="topic_id" value="{{$topic->id}}" />
-    <textarea name="text"></textarea>
-    <button type="submit">
-        Reply
-    </button>
-{{ Form::close() }}
+@include('boards.includes.reply_form')
+
 @endsection
+
