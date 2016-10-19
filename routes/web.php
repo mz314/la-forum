@@ -25,6 +25,16 @@ Route::post('/topic/reply', [
     'uses'=>'TopicController@reply'
 ]);
 
+
+Route::get('/profile', [
+    'uses'=>'ProfileController@index'
+])->middleware('auth');;
+
+Route::get('/profile/{name}', [
+    'uses'=>'ProfileController@index'
+]);
+
+
 Auth::routes();
 
 
