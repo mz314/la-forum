@@ -1,6 +1,6 @@
 <div class="post">
     <div class="text"> 
-    {{$post->text}}
+    {!! nl2br(e($post->text)) !!}
     </div>
     <div class="author">
         {{$post->user->name}}

@@ -8,27 +8,11 @@ LaForum - {{$board->title}}
 <h1>
     {{$board->title}}
 </h1>
+<div>
+    {{$board->description}}
+</div>
 
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
-{{ Form::open(['action' => 'BoardController@store']) }}
-{{ Form::text('title') }}
-<br />
-{{ Form::textarea('text') }}
-<input type="hidden" name="board_id" value="{{$board->id}}" />
-<br />
-<button type="submit">
-    New topic
-</button>
-{{ Form::close() }}
 <table>
     <tbody>
         @foreach($board->topics as $t)
@@ -40,7 +24,7 @@ LaForum - {{$board->title}}
                     </a>
                 </div>
                 <div>
-                    {{str_limit($t->post->text, 10)}}
+                    {{str_limit($t->post->text, 100) }}
                 </div>
             </td>
         </tr>
@@ -48,5 +32,27 @@ LaForum - {{$board->title}}
     </tbody>
 </table>
 
+
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+<br />
+<br />
+{{ Form::open(['action' => 'BoardController@store']) }}
+{{ Form::text('title') }}
+<br />
+{{ Form::textarea('text') }}
+<input type="hidden" name="board_id" value="{{$board->id}}" />
+<br />
+<button type="submit">
+    New topic
+</button>
+{{ Form::close() }}
 
 @endsection

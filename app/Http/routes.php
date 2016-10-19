@@ -50,5 +50,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () 
     ]);
     
    Route::resource('boards', 'Admin\BoardController');
+   Route::resource('users', 'Admin\UserController');
     
 });
