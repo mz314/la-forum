@@ -32,6 +32,11 @@ Route::group(['prefix' => '/profile'], function() {
         'uses' => 'ProfileController@index'
     ])->middleware('auth');
 
+
+    Route::post('store', [
+       'uses'=>'ProfileController@store'
+    ])->middleware('auth')->name('store_profile');
+
     Route::get('/{name}', [
         'uses' => 'ProfileController@index'
     ]);

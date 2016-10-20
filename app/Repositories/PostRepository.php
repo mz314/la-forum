@@ -51,7 +51,7 @@ class PostRepository extends Repository
     {
 
         $postsQuery = Post::where('topic_id', $topic_id)
-            ->where('parent_id', '!=', null);
+            ->where('parent_id', '!=', null)->with('user');
 
         $posts = [];
 

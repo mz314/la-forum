@@ -1,4 +1,4 @@
-<div class="post">
+<div class="post" style="border: 1px solid black">
     <div class="text"> 
     {!! nl2br(e($post->text)) !!}
     </div>

@@ -57,4 +57,9 @@ class UserController extends Controller
     {
         $this->userRepository->update($user, $request->all());
     }
+
+    public function destroy(User $user)
+    {
+         $user->delete();
+    }
 }

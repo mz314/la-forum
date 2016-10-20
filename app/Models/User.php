@@ -2,6 +2,8 @@
 
 namespace LaForum\Models;
 
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
@@ -35,4 +37,8 @@ class User extends Authenticatable
         return $this->roles()->lists('id');
     }
 
+    public function getAvatar()
+    {
+        return URL::asset('images/avatars/'.$this->avatar);
+    }
 }
