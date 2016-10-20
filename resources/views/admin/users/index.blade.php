@@ -1,7 +1,7 @@
 @extends('admin.base')
 
 @section('content')
-<a href="">
+<a href="{{ URL::route('users.create') }}">
     Add
 </a>
 <table border="1" width="100%">

@@ -22,15 +22,9 @@ class TopicController extends Controller
     public function topic($id)
     {
 
-        $topic = $this->topicRepository->get($id); //$this->topicRepository->findWithPosts($id);
-
-        //$replies = $this->postRepository->getByTopicTree($topic->id);
-
-
+        $topic = $this->topicRepository->get($id);
 
         $replies = $this->postRepository->getByTopicTree($id);
-
-       
 
         return View('boards.topic',
             [

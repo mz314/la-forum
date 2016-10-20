@@ -20,7 +20,7 @@ class PostRepository extends Repository
         $post->topic_id  = $topic_id;
         $post->parent_id = $parent_id;
         $post->text      = $text;
-        $post->user_id   = $user_id; //temporary
+        $post->user_id   = $user_id; 
 
         $post->save();
 
@@ -49,7 +49,6 @@ class PostRepository extends Repository
 
     public function getByTopicTree($topic_id)
     {
-        $topic = Topic::find($topic_id)->first();
 
         $postsQuery = Post::where('topic_id', $topic_id)
             ->where('parent_id', '!=', null);

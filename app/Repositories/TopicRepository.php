@@ -36,7 +36,7 @@ class TopicRepository extends Repository
 
     public function get($topic_id)
     {
-        return Topic::find($topic_id)->first();
+        return Topic::find($topic_id);
     }
 
     public function findWithPosts($topic_id)

@@ -4,16 +4,20 @@ namespace LaForum\Http\Controllers\Admin;
 
 use LaForum\Http\Requests\UserRequest;
 use LaForum\Repositories\UserRepository;
+use LaForum\Repositories\RoleRepository;
 use LaForum\Models\User;
 use LaForum\Models\Role;
 
 class UserController extends Controller
 {
     protected $userRepository;
+    protected $roleRepository;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository,
+                                RoleRepository $roleRepository)
     {
         $this->userRepository = $userRepository;
+        $this->roleRepository = $roleRepository;
     }
 
     public function index()
@@ -26,29 +30,31 @@ class UserController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('admin.users.create',
+            [
+            'roles' => $this->roleRepository->getMapped(),
+        ]);
+    }
+
     public function edit(User $user)
     {
-
-
-        $roles = [];
-        Role::all()->map(function($item) use(&$roles) {
-            $roles[$item->id] = $item->display_name;
-        });
-
-       
-
-        
 
         return view('admin.users.edit',
             [
             'user' => $user,
-            'roles' => $roles,
+            'roles' => $this->roleRepository->getMapped(),
         ]);
+    }
+
+    public function store(UserRequest $request)
+    {
+        $this->userRepository->create($request->all());
     }
 
     public function update(User $user, UserRequest $request)
     {
-        var_dump($request->all());
-        die;
+        $this->userRepository->update($user, $request->all());
     }
 }

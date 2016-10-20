@@ -9,16 +9,16 @@
         <a href="{{$post->id}}" class="post-reply">
             Reply
         </a>
-        <a href="{{$post->id}}" class="post-bump">
+<!--        <a href="{{$post->id}}" class="post-bump">
             Bump
-        </a>
+        </a>-->
        
-        @if(Auth::user() && Auth::user()->id == $post->user_id)
+<!--        @if(Auth::user() && Auth::user()->id == $post->user_id)
         <a href="#">
             Edit
         </a>
         
         
-        @endif
+        @endif-->
     </div>
 </div>
