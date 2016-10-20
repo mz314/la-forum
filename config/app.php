@@ -208,8 +208,8 @@ return [
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
-
     'path' => [
-      'avatars'=>  base_path().'/public/images/avatars/',
+        'avatars' => base_path().'/public/images/avatars/',
     ],
+    'paging_default' => 15,
 ];

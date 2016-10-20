@@ -24,12 +24,13 @@ class TopicController extends Controller
 
         $topic = $this->topicRepository->get($id);
 
-        $replies = $this->postRepository->getByTopicTree($id);
+        $treeData = $this->postRepository->getByTopicTree($id);
 
-        return View('boards.topic',
+         return View('boards.topic',
             [
             'topic' => $topic,
-            'replies' => $replies,
+            'replies' => $treeData->tree,
+             'posts'=>$treeData->posts,
         ]);
     }
 

@@ -19,6 +19,6 @@
         @endforeach
     </tbody>
 </table>
-
+{{ $boards->links() }}
 
 @endsection

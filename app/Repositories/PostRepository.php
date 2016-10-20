@@ -47,15 +47,15 @@ class PostRepository extends Repository
         return Post::where('parent_id', $parent_id)->get();
     }
 
-    public function getByTopicTree($topic_id)
+    public function getByTopicTree($topic_id, $paging=null)
     {
 
         $postsQuery = Post::where('topic_id', $topic_id)
-            ->where('parent_id', '!=', null)->with('user');
+            ->where('parent_id', '!=', null)->with('user')->get(); //->paginate(1);
 
         $posts = [];
 
-        $postsQuery->get()->map(function ($item) use(&$posts) {
+        $postsQuery->map(function ($item) use(&$posts) {
 
             if (!isset($posts[$item->parent_id])) {
                 $posts[$item->parent_id] = [];
@@ -64,7 +64,10 @@ class PostRepository extends Repository
             $posts[$item->parent_id][] = $item;
         });
 
+        $data = new \stdClass();
+        $data->tree = $posts;
+        $data->posts = $postsQuery;
 
-        return $posts;
+        return $data;
     }
 }
