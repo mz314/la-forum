@@ -9,10 +9,13 @@ LaForum - {{$topic->board->title}} - {{$topic->title}}
     {{$topic->title}}
 </h1>
 <div>
-    @include('boards.includes.topic_post', ['post' => $topic, 'parent'=>'#'])
+    @include('boards.includes.topic_post', ['post' => $topic, 'type'=>'topic'])
 
 </div>
-<div>Replies:</div>
+
+<br />
+----
+<br />
 
 <div class="replies">
    @include('boards.includes.recursive_posts', ['root_id'=>$topic->post_id, 'replies'=>$replies ])

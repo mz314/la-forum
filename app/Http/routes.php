@@ -14,7 +14,7 @@ Route::group(['prefix' => '/forum'], function() {
     ])->name('board');
 
     Route::post('/boards/post', [
-        'uses' => 'BoardController@store'
+        'uses' => 'TopicController@create'
     ]);
 
     Route::get('/topic/{id}', [

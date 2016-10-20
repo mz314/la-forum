@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Config;
 use LaForum\Models\Board;
 use LaForum\Repositories\BoardRepository;
 use LaForum\Repositories\TopicRepository;
-use LaForum\Http\Requests\TopicRequest;
+
 
 class BoardController extends Controller
 {
@@ -42,11 +42,5 @@ class BoardController extends Controller
         ]);
     }
 
-    public function store(TopicRequest $request)
-    {
-
-        $this->topicRepository->create($request->all(), Auth::user()->id);
-
-        return redirect()->route('board', [$request->get('board_id')]);
-    }
+ 
 }

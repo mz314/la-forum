@@ -9,7 +9,7 @@
 @endif
 <br />
 <br />
-{{ Form::open(['action' => 'BoardController@store']) }}
+{{ Form::open(['action' => 'TopicController@create']) }}
 {{ Form::text('title') }}
 <br />
 {{ Form::textarea('text') }}
