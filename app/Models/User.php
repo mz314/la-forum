@@ -8,10 +8,10 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
-    
     protected $table = 'users';
-    use Notifiable, EntrustUserTrait;
-    
+
+    use Notifiable,
+        EntrustUserTrait;
     /**
      * The attributes that are mass assignable.
      *
@@ -29,4 +29,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getRolesListAttribute()
+    {
+        return $this->roles()->lists('id');
+    }
+
 }

@@ -3,7 +3,6 @@
 namespace LaForum\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-
 use LaForum\Repositories\PostRepository;
 use LaForum\Repositories\TopicRepository;
 use LaForum\Http\Requests\PostRequest;
@@ -23,21 +22,29 @@ class TopicController extends Controller
     public function topic($id)
     {
 
-        $topic = $this->topicRepository->findWithPosts($id);
+        $topic = $this->topicRepository->get($id); //$this->topicRepository->findWithPosts($id);
+
+        //$replies = $this->postRepository->getByTopicTree($topic->id);
 
 
-        return View('boards.topic', [
+
+        $replies = $this->postRepository->getByTopicTree($id);
+
+       
+
+        return View('boards.topic',
+            [
             'topic' => $topic,
+            'replies' => $replies,
         ]);
     }
-    
+
     public function reply(PostRequest $request)
     {
-        $this->postRepository->createReply($request->get('parent_id'), $request->get('text'), 
-            Auth::user()->id
-            );
-        
+        $this->postRepository->createReply($request->get('parent_id'),
+            $request->get('text'), Auth::user()->id
+        );
+
         return redirect()->route('topic', [$request->get('topic_id')]);
     }
-    
 }

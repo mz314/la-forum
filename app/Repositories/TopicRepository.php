@@ -34,12 +34,17 @@ class TopicRepository extends Repository
         $post->save();
     }
 
+    public function get($topic_id)
+    {
+        return Topic::find($topic_id)->first();
+    }
+
     public function findWithPosts($topic_id)
     {
-       $topic = Topic::find($topic_id);
+        $topic = Topic::find($topic_id);
 
-       $topic->replies = $topic->posts()->where('id', '!=', $topic->post->id)->get();
+        $topic->replies = $topic->posts()->where('id', '!=', $topic->post->id)->get();
 
-       return $topic;
+        return $topic;
     }
 }

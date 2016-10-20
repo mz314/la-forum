@@ -13,5 +13,10 @@ class Post extends Model
     {
         return $this->belongsTo('LaForum\Models\User');
     }
-    
+
+
+    public function children()
+    {
+        return $this->hasMany('LaForum\Models\Post');
+    }
 }

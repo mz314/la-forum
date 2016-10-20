@@ -15,7 +15,7 @@ LaForum - {{$topic->board->title}} - {{$topic->title}}
 <div>Replies:</div>
 
 <div class="replies">
-    @each('boards.includes.topic_post', $topic->replies, 'post')
+   @include('boards.includes.recursive_posts', ['root_id'=>$topic->post_id, 'replies'=>$replies ])
 </div>
 
 @include('boards.includes.reply_form')
