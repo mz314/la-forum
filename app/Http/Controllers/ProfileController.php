@@ -5,8 +5,8 @@ namespace LaForum\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
+
 use LaForum\Models\User;
-use LaForum\Models\Role;
 use LaForum\Http\Requests\UserRequest;
 
 class ProfileController extends Controller

@@ -9,7 +9,7 @@ LaForum - {{$topic->board->title}} - {{$topic->title}}
     {{$topic->title}}
 </h1>
 <div>
-    @include('boards.includes.topic_post', ['post' => $topic->post])
+    @include('boards.includes.topic_post', ['post' => $topic, 'parent'=>'#'])
 
 </div>
 <div>Replies:</div>

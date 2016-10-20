@@ -7,20 +7,22 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use LaForum\Models\Board;
 use LaForum\Repositories\BoardRepository;
+use LaForum\Repositories\TopicRepository;
 use LaForum\Http\Requests\TopicRequest;
 
 class BoardController extends Controller
 {
     protected $boardRepository;
 
-    public function __construct(BoardRepository $boardRepository)
+    public function __construct(BoardRepository $boardRepository, TopicRepository $topicRepository)
     {
         $this->boardRepository = $boardRepository;
+        $this->topicRepository = $topicRepository;
     }
 
     public function listing()
     {
-        $boards =  Board::paginate(Config::get('paging_default'));
+        $boards = Board::paginate(Config::get('paging_default'));
 
         return View('boards.list', [
             'boards' => $boards,
@@ -43,12 +45,7 @@ class BoardController extends Controller
     public function store(TopicRequest $request)
     {
 
-        $this->boardRepository->addTopic([
-            'board_id' => $request->get('board_id'),
-            'title' => $request->get('title'),
-            'text' => $request->get('text'),
-            'user_id' => Auth::user()->id,
-        ]);
+        $this->topicRepository->create($request->all(), Auth::user()->id);
 
         return redirect()->route('board', [$request->get('board_id')]);
     }

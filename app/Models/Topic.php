@@ -13,9 +13,9 @@ class Topic extends Model
         return $this->belongsTo('LaForum\Models\Board');
     }
 
-    public function post()
+    public function user()
     {
-        return $this->hasOne('LaForum\Models\Post');
+        return $this->belongsTo('LaForum\Models\User');
     }
 
     public function posts()

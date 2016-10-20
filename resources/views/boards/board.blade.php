@@ -24,7 +24,7 @@ LaForum - {{$board->title}}
                     </a>
                 </div>
                 <div>
-                    {{ str_limit($t->post->text, 100) }}
+                    {{ str_limit($t->text, 100) }}
                 </div>
             </td>
         </tr>

@@ -6,6 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePostsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -13,10 +14,29 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('posts',
+            function (Blueprint $table) {
             $table->increments('id');
             $table->text('text');
             $table->timestamps();
+            $table->integer('topic_id')->unsigned();
+            $table->integer('parent_id')->unsigned()->nullable()->default(null);
+            $table->integer('user_id')->unsigned();
+
+            $table
+                ->foreign('topic_id')
+                ->references('id')->on('topics')
+                ->onDelete('cascade');
+
+            $table
+                ->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+
+             $table
+                ->foreign('parent_id')
+                ->references('id')->on('posts')
+                ->onDelete('cascade');
         });
     }
 

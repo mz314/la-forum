@@ -36,7 +36,9 @@ class TopicController extends Controller
 
     public function reply(PostRequest $request)
     {
-        $this->postRepository->createReply($request->get('parent_id'),
+        $this->postRepository->createReply(
+            $request->get('topic_id'),
+            $request->get('parent_id'),
             $request->get('text'), Auth::user()->id
         );
 

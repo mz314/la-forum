@@ -14,24 +14,16 @@ class TopicRepository extends Repository
         $this->postRepository = $postRepository;
     }
 
-    public function create($board_id, $post_id, $title)
+    public function create($data, $user_id)
     {
         $topic           = new Topic();
-        $topic->board_id = $board_id;
-        $topic->title    = $title;
-        $topic->post_id  = $post_id;
+        $topic->board_id = $data['board_id'];
+        $topic->title    = $data['title'];
+        $topic->text     = $data['text'];
+        $topic->user_id  = $user_id;
         $topic->save();
 
         return $topic;
-    }
-
-    public function createWithPost($board_id, $user_id, $title, $text)
-    {
-        $post = $this->postRepository->create($text, $user_id);
-
-        $topic          = $this->create($board_id, $post->id, $title);
-        $post->topic_id = $topic->id;
-        $post->save();
     }
 
     public function get($topic_id)

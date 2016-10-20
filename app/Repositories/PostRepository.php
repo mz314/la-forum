@@ -20,21 +20,21 @@ class PostRepository extends Repository
         $post->topic_id  = $topic_id;
         $post->parent_id = $parent_id;
         $post->text      = $text;
-        $post->user_id   = $user_id; 
+        $post->user_id   = $user_id;
 
         $post->save();
 
         return $post;
     }
 
-    public function createReply($parent_id, $text, $user_id)
+    public function createReply($topic_id, $parent_id, $text, $user_id)
     {
         $parentPost = Post::find($parent_id);
 
         $post            = new Post();
-        $post->parent_id = $parent_id;
+        $post->parent_id = ($parent_id == '' ? null : $parent_id);
         $post->text      = $text;
-        $post->topic_id  = $parentPost->topic_id;
+        $post->topic_id  = $topic_id;
         $post->user_id   = $user_id;
 
         $post->save();
@@ -47,11 +47,11 @@ class PostRepository extends Repository
         return Post::where('parent_id', $parent_id)->get();
     }
 
-    public function getByTopicTree($topic_id, $paging=null)
+    public function getByTopicTree($topic_id, $paging = null)
     {
 
         $postsQuery = Post::where('topic_id', $topic_id)
-            ->where('parent_id', '!=', null)->with('user')->get(); //->paginate(1);
+               ->with('user')->get(); 
 
         $posts = [];
 
@@ -64,8 +64,8 @@ class PostRepository extends Repository
             $posts[$item->parent_id][] = $item;
         });
 
-        $data = new \stdClass();
-        $data->tree = $posts;
+        $data        = new \stdClass();
+        $data->tree  = $posts;
         $data->posts = $postsQuery;
 
         return $data;
