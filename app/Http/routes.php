@@ -24,7 +24,7 @@ Route::group(['prefix' => '/forum'], function() {
     Route::delete('/topic/{topic}/delete', [
         'uses' => 'TopicController@deleteTopic',
     ]);
-    
+
     Route::delete('/topic/post/{post}/delete', [
         'uses' => 'TopicController@deletePost',
     ]);
@@ -33,6 +33,17 @@ Route::group(['prefix' => '/forum'], function() {
     Route::post('/topic/reply', [
         'uses' => 'TopicController@reply'
     ]);
+
+    Route::group(['prefix' => '/search'], function () {
+
+        Route::get('', [
+            'uses' => 'SearchController@index'
+        ]);
+        
+         Route::post('search', [
+            'uses' => 'SearchController@search'
+        ]);
+    });
 });
 
 Route::group(['prefix' => '/profile'], function() {
