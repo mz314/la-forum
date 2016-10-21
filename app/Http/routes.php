@@ -21,6 +21,14 @@ Route::group(['prefix' => '/forum'], function() {
         'uses' => 'TopicController@topic'
     ])->name('topic');
 
+    Route::delete('/topic/{topic}/delete', [
+        'uses' => 'TopicController@deleteTopic',
+    ]);
+    
+    Route::delete('/topic/post/{post}/delete', [
+        'uses' => 'TopicController@deletePost',
+    ]);
+
 
     Route::post('/topic/reply', [
         'uses' => 'TopicController@reply'
@@ -34,7 +42,7 @@ Route::group(['prefix' => '/profile'], function() {
 
 
     Route::post('store', [
-       'uses'=>'ProfileController@store'
+        'uses' => 'ProfileController@store'
     ])->middleware('auth')->name('store_profile');
 
     Route::get('/{name}', [
@@ -53,8 +61,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () 
     Route::get('/', [
         'uses' => 'Admin\DashboardController@index'
     ]);
-    
-   Route::resource('boards', 'Admin\BoardController');
-   Route::resource('users', 'Admin\UserController');
-    
+
+    Route::resource('boards', 'Admin\BoardController');
+    Route::resource('users', 'Admin\UserController');
 });
