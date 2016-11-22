@@ -26,7 +26,7 @@ class SearchController extends Controller
     public function search(SearchRequest $request)
     {
         $term = $request->get('query');
-        //$this->searchHelper->testF();
+        $this->searchHelper->searchPhrase($term);
         return View('search.results', [
             'term' => $term,
         ]);

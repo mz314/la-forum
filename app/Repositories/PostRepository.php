@@ -5,12 +5,19 @@ namespace LaForum\Repositories;
 use LaForum\Models\Post;
 use LaForum\Models\Topic;
 
-class PostRepository extends Repository
+class PostRepository extends SearchableRepository
 {
 
     public function __construct(Post $model)
     {
         $this->model = $model;
+    }
+
+    public function getSearchableFields()
+    {
+        return [
+          'text',
+        ];
     }
 
     public function create($text, $user_id, $topic_id = 0, $parent_id = null)
@@ -70,4 +77,5 @@ class PostRepository extends Repository
 
         return $data;
     }
+    
 }
