@@ -4,23 +4,32 @@ namespace LaForum\Repositories;
 
 use LaForum\Models\Topic;
 
-class TopicRepository extends Repository
+class TopicRepository extends SearchableRepository
 {
+
     protected $postRepository;
 
     public function __construct(Topic $model, PostRepository $postRepository)
     {
-        $this->model          = $model;
+        $this->model = $model;
         $this->postRepository = $postRepository;
+    }
+
+    protected function getSearchableFields()
+    {
+        return [
+            'title',
+            'text',
+        ];
     }
 
     public function create($data, $user_id)
     {
-        $topic           = new Topic();
+        $topic = new Topic();
         $topic->board_id = $data['board_id'];
-        $topic->title    = $data['title'];
-        $topic->text     = $data['text'];
-        $topic->user_id  = $user_id;
+        $topic->title = $data['title'];
+        $topic->text = $data['text'];
+        $topic->user_id = $user_id;
         $topic->save();
 
         return $topic;

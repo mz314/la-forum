@@ -1,6 +1,6 @@
 <?php
 
-namespace LaForum\Classes;
+namespace LaForum\Classes\Search;
 
 class SearchResultEntry
 {
