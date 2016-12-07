@@ -9,7 +9,10 @@
         "laravel/framework": "5.3.*",
         "laravelcollective/html": "^5.3",
         "zizaco/entrust": "dev-laravel-5",
-        "barryvdh/laravel-debugbar": "^2.3"
+        "barryvdh/laravel-debugbar": "^2.3",
+        "laravel/scout": "^1.1",
+        "algolia/algoliasearch-client-php": "^1.11",
+        "elasticsearch/elasticsearch": "^5.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

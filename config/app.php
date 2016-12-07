@@ -144,6 +144,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
         
         /*
          * Package Service Providers...

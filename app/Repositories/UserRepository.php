@@ -4,17 +4,12 @@ namespace LaForum\Repositories;
 
 use LaForum\Models\User;
 
-class UserRepository extends SearchableRepository
+class UserRepository extends Repository
 {
 
     public function __construct(User $model)
     {
         $this->model = $model;
-    }
-
-    protected function getSearchableFields()
-    {
-        return ['name',];
     }
 
     public function create($data)

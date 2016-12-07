@@ -9,7 +9,8 @@ class Topic extends Model
 {
 
     use SoftDeletes;
-
+     use \Laravel\Scout\Searchable;
+    
     protected $dates = ['deleted_at'];
     protected $table = 'topics';
 

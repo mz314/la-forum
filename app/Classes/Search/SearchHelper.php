@@ -83,15 +83,14 @@ class SearchHelper
         $searchRes = [];
 
         foreach ($searchRepos as $type => $sR) {
-            $searchRes[$type] = $sR->searchPhrase($phrase, false);
+            $searchRes[$type] = $sR->getModel()->search($phrase)->get();
         }
 
-        $results = $this->mergeAndTransform($searchRes);
-        return $results;
+
+        
+       // $results = $this->mergeAndTransform($searchRes);
 //        dd($results);
-//        $posts = $this->postRepository->searchPhrase($phrase, false);
-//        dd($posts);
-//        $topics = $this->topicRepository->searchPhrase($phrase, false);
-//        $users = $this->userRepository->searchPhrase($phrase, false);
+        return $searchRes;
+
     }
 }

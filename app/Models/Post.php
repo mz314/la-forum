@@ -5,10 +5,12 @@ namespace LaForum\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class Post extends Model
 {
 
-    use SoftDeletes;
+    use SoftDeletes; 
+    use \Laravel\Scout\Searchable;
 
     protected $table = 'posts';
 

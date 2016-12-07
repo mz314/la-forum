@@ -6,11 +6,9 @@
 </h1>   
 @include('search.form')
 <div>
-    @foreach($results as $result)
+    @foreach($results as $type=>$result)
     <div>
-        {{$result->getType()}}<br />
-        {{$result->getTitle()}}<br />
-        {{$result->getText()}}<br />
+        {{dump($result)}}
     </div>
     <hr />
     @endforeach

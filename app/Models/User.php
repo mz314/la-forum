@@ -11,9 +11,11 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 class User extends Authenticatable
 {
     protected $table = 'users';
-
+    
     use Notifiable,
         EntrustUserTrait;
+     use \Laravel\Scout\Searchable;
+    
     /**
      * The attributes that are mass assignable.
      *

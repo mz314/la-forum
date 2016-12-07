@@ -4,7 +4,7 @@ namespace LaForum\Repositories;
 
 use LaForum\Models\Topic;
 
-class TopicRepository extends SearchableRepository
+class TopicRepository extends Repository
 {
 
     protected $postRepository;
@@ -15,13 +15,7 @@ class TopicRepository extends SearchableRepository
         $this->postRepository = $postRepository;
     }
 
-    protected function getSearchableFields()
-    {
-        return [
-            'title',
-            'text',
-        ];
-    }
+ 
 
     public function create($data, $user_id)
     {
