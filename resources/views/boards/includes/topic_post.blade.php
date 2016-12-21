@@ -1,6 +1,6 @@
 <div class="post">
      <div class="author">
-        <img src="{{$post->user->getAvatar()}}" />
+        <img src="{{$post->user->getAvatar()}}" class="avatar-image" />
         {{$post->user->name}}
     </div>
     

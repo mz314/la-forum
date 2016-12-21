@@ -27,4 +27,10 @@ class Topic extends Model
     {
         return $this->hasMany('LaForum\Models\Post', 'topic_id', 'id');
     }
+    
+     public static function boot() {
+        parent::boot();
+ 
+     
+    }
 }

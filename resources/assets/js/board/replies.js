@@ -5,6 +5,7 @@ var ReplyHelper = {
         ReplyHelper.bind();
     },
     reply: function (element) {
+        console.log('reply click');
         ReplyHelper.form.show();
 
         href = element.attr('href');

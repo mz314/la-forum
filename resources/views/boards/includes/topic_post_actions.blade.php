@@ -6,7 +6,7 @@
 @php($delete_action = 'TopicController@deletePost')
 @endif
 
-<a class="btn btn-default" href="{{$reply_action}}" class="post-reply">
+<a class="btn btn-default post-reply" href="{{$reply_action}}">
     Reply
 </a>
 

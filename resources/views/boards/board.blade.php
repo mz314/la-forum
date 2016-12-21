@@ -13,19 +13,20 @@ LaForum - {{$board->title}}
 </div>
 
 
-<table>
+<table class="board-topics table table-bordered">
     <tbody>
         @foreach($board_topics as $t)
         <tr>
             <td>
-                <div>
-                    <a href="{{ URL::route('topic', [$t->id]) }}">
-                        {{$t->title}}
-                    </a>
-                </div>
-                <div>
-                    {{ str_limit($t->text, 100) }}
-                </div>
+                <img class="avatar-image" src="{{$t->user->getAvatar()}}" />
+            </td>
+            <td>
+                <a href="{{ URL::route('topic', [$t->id]) }}">
+                    {{$t->title}}
+                </a>
+            </td>
+            <td>
+                {{ str_limit($t->text, 100) }}
             </td>
         </tr>
         @endforeach
@@ -35,6 +36,5 @@ LaForum - {{$board->title}}
 {{ $board_topics->links() }}
 
 @include('boards.includes.topic_form')
-
 
 @endsection

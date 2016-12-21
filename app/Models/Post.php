@@ -5,6 +5,8 @@ namespace LaForum\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use LaForum\Observers\NewPostObserver;
+
 class Post extends Model
 {
 
@@ -28,5 +30,11 @@ class Post extends Model
     public function children()
     {
         return $this->hasMany('LaForum\Models\Post');
+    }
+    
+    public static function boot() {
+        parent::boot();
+        Post::observe(new NewPostObserver());
+     
     }
 }

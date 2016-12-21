@@ -3,9 +3,7 @@
     border: 1px solid black;
     .author {
         float: left;
-        img {
-           width: 64px; 
-        }
+        
     }
     
     .text {
@@ -14,5 +12,12 @@
     
     .actions {
         clear: both;
+        form {
+            display: inline;
+        }
     }
+}
+
+table.board-topics {
+    
 }
