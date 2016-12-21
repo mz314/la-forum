@@ -10,10 +10,12 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
+
     protected $table = 'users';
 
     use Notifiable,
         EntrustUserTrait;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -39,6 +41,9 @@ class User extends Authenticatable
 
     public function getAvatar()
     {
-        return URL::asset('images/avatars/'.$this->avatar);
+        if ($this->avatar) {
+            return URL::asset('images/avatars/' . $this->avatar);
+        }
+        return URL::asset('images/img/dummy-avatar.png');
     }
 }

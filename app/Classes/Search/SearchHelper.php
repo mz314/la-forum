@@ -32,6 +32,7 @@ class SearchHelper
                 $titleCol = 'title';
                 $textCol = null;
                 break;
+            
             case 'user':
                 $titleCol = 'name';
                 $textCol = '';
@@ -46,6 +47,7 @@ class SearchHelper
         foreach ($res as $item) {
             $title = null;
             $text = null;
+            
             if ($titleCol) {
                 $title = $item->{$titleCol};
             }
@@ -53,6 +55,7 @@ class SearchHelper
             if ($textCol) {
                 $text = $item->{$textCol};
             }
+            
             $entry = new SearchResultEntry($type, $title, $text);
             $results[] = $entry;
         }
@@ -87,11 +90,8 @@ class SearchHelper
         }
 
         $results = $this->mergeAndTransform($searchRes);
+        
         return $results;
-//        dd($results);
-//        $posts = $this->postRepository->searchPhrase($phrase, false);
-//        dd($posts);
-//        $topics = $this->topicRepository->searchPhrase($phrase, false);
-//        $users = $this->userRepository->searchPhrase($phrase, false);
+
     }
 }

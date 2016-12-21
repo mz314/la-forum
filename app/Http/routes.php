@@ -21,11 +21,11 @@ Route::group(['prefix' => '/forum'], function() {
         'uses' => 'TopicController@topic'
     ])->name('topic');
 
-    Route::delete('/topic/{topic}/delete', [
+    Route::delete('/topic/{item}/delete', [
         'uses' => 'TopicController@deleteTopic',
     ]);
 
-    Route::delete('/topic/post/{post}/delete', [
+    Route::delete('/topic/post/{item}/delete', [
         'uses' => 'TopicController@deletePost',
     ]);
 

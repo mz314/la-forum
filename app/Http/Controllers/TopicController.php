@@ -7,6 +7,7 @@ use LaForum\Repositories\PostRepository;
 use LaForum\Repositories\TopicRepository;
 use LaForum\Http\Requests\PostRequest;
 use LaForum\Http\Requests\TopicRequest;
+use Illuminate\Http\Request;
 use LaForum\Models\Topic;
 use LaForum\Models\Post;
 
@@ -45,22 +46,30 @@ class TopicController extends Controller
         return redirect()->route('topic', [$request->get('topic_id')]);
     }
 
-    public function deleteTopic(Topic $topic)
+    public function deleteTopic(Request $request, Topic $item)
     {
-        $boardId = $topic->board->id;
+        $boardId = $item->board->id;
 
-        $topic->forceDelete();
+        if ($request->get('hard', '0') == 1) {
+            $item->forceDelete();
+        } else {
+            $item->delete();
+        }
 
         return redirect()->route('board', $boardId);
     }
 
-    public function deletePost(Post $post)
+    public function deletePost(Request $request, Post $item)
     {
-        $topicId = $post->topic->id;
-        
-        $post->forceDelete();
-        
-        return redirect()->route('board', $topicId);
+        $topicId = $item->topic->id;
+
+        if ($request->get('hard', '0') == 1) {
+            $item->forceDelete();
+        } else {
+            $item->delete();
+        }
+
+         return redirect()->route('topic', $topicId);
     }
 
     public function create(TopicRequest $request)

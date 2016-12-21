@@ -13,10 +13,9 @@ LaForum - {{$topic->board->title}} - {{$topic->title}}
 
 </div>
 
-<br />
-----
-<br />
-
+<div class="separator">
+    <hr />
+</div>
 <div class="replies">
    @include('boards.includes.recursive_posts', ['root_id'=>$topic->post_id, 'replies'=>$replies ])
 </div>

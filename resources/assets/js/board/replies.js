@@ -17,6 +17,12 @@ var ReplyHelper = {
 
         console.log($(element).attr('href'));
     },
+    softDelete: function (url) {
+        $.ajax({
+            url: url,
+            method: 'DELETE'
+        });
+    },
     bind: function () {
         $('.post-reply').click(function (e) {
             e.preventDefault();
@@ -27,6 +33,11 @@ var ReplyHelper = {
             e.preventDefault();
             ReplyHelper.form.hide();
         });
+        
+//        $('.soft-delete').on('click',function (e) {
+//           e.preventDefault();
+//           ReplyHelper.softDelete($(this).attr('href'));
+//        });
     }
 };
 
