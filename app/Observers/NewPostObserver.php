@@ -12,12 +12,14 @@ class NewPostObserver
     public function created(Post $post)
     {
 
-        $topicReplied = new TopicReplied($post);
+        if ($post->topic) {
+            $topicReplied = new TopicReplied($post);
 
-        $topic = $post->topic;
+            $topic = $post->topic;
 
-        Mail::to($topic->user->email)
-            ->send($topicReplied);
-        // https://laravel.com/docs/5.1/mail + queue
+            Mail::to($topic->user->email)
+                ->send($topicReplied);
+            // https://laravel.com/docs/5.1/mail + queue
+        }
     }
 }

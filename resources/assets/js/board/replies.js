@@ -10,11 +10,9 @@ var ReplyHelper = {
 
         href = element.attr('href');
         
-        if (href != '#') {
+        
             ReplyHelper.form.find('input[name=parent_id]').val(href);
-        } else {
-            ReplyHelper.form.find('input[name=parent_id]').val('');
-        }
+        
 
         console.log($(element).attr('href'));
     },

@@ -17,24 +17,29 @@ LaForum - {{$board->title}}
     <tbody>
         @foreach($board_topics as $t)
         <tr>
+  
+          <td>
+                <a href="{{ URL::action('ProfileController@index', $t->post->user->name) }}">
+                    <img class="avatar-image" src="{{$t->post->user->getAvatar()}}" />
+                </a>
+           
+            </td> 
+         
             <td>
-                <a href="{{ URL::action('ProfileController@index', $t->user->name) }}">
-                    <img class="avatar-image" src="{{$t->user->getAvatar()}}" />
+                <a href="{{ URL::action('ProfileController@index', $t->post->user->name) }}">
+                    {{$t->post->user->name}}
                 </a>
             </td>
-            <td>
-                <a href="{{ URL::action('ProfileController@index', $t->user->name) }}">
-                    {{$t->user->name}}
-                </a>
-            </td>
+            
             <td>
                 <a href="{{ URL::route('topic', [$t->id]) }}">
                     {{$t->title}}
                 </a>
             </td>
             <td>
-                {{ str_limit($t->text, 100) }}
+                {{ str_limit($t->post->text, 100) }}
             </td>
+            
             <td>
                 {{$t->created_at}}
             </td>

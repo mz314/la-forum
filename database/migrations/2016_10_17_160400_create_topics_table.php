@@ -14,23 +14,26 @@ class CreateTopicsTable extends Migration
      */
     public function up()
     {
-        Schema::create('topics',
-            function (Blueprint $table) {
+        Schema::create('topics', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 255);
             $table->integer('board_id')->unsigned();
             $table->timestamps();
-            $table->text('text');
-            $table->integer('user_id')->unsigned();
+            $table->integer('post_id')->unsigned();
+            
+           
+            
+             
+
             $table
                 ->foreign('board_id')
                 ->references('id')->on('boards')
                 ->onDelete('cascade');
 
-            $table
-                ->foreign('user_id')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+//            $table
+//                ->foreign('user_id')
+//                ->references('id')->on('users')
+//                ->onDelete('cascade');
         });
     }
 

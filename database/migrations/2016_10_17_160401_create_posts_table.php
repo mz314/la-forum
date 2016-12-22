@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -14,12 +13,11 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts',
-            function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->text('text');
             $table->timestamps();
-            $table->integer('topic_id')->unsigned();
+            $table->integer('topic_id')->nullable()->unsigned();
             $table->integer('parent_id')->unsigned()->nullable()->default(null);
             $table->integer('user_id')->unsigned();
 
@@ -33,10 +31,17 @@ class CreatePostsTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
 
-             $table
+            $table
                 ->foreign('parent_id')
                 ->references('id')->on('posts')
                 ->onDelete('cascade');
+        });
+
+        Schema::table('topics', function (Blueprint $table) {
+            $table->foreign('post_id')
+                ->references('id')->on('posts')
+                ->onDelete('cascade')
+            ;
         });
     }
 

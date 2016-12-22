@@ -9,7 +9,7 @@ LaForum - {{$topic->board->title}} - {{$topic->title}}
     {{$topic->title}}
 </h1>
 <div>
-    @include('boards.includes.topic_post', ['post' => $topic, 'type'=>'topic'])
+    @include('boards.includes.topic_post', ['post' => $topic->post, 'type'=>'topic'])
 
 </div>
 
@@ -17,7 +17,7 @@ LaForum - {{$topic->board->title}} - {{$topic->title}}
     <hr />
 </div>
 <div class="replies">
-   @include('boards.includes.recursive_posts', ['root_id'=>$topic->post_id, 'replies'=>$replies ])
+   @include('boards.includes.recursive_posts', ['root_id'=>$topic->post->id, 'replies'=>$replies ])
 </div>
 
 @include('boards.includes.reply_form')

@@ -46,22 +46,15 @@ class TopicController extends Controller
         return redirect()->route('topic', [$request->get('topic_id')]);
     }
 
-    public function deleteTopic(Request $request, Topic $item)
-    {
-        $boardId = $item->board->id;
-
-        if ($request->get('hard', '0') == 1) {
-            $item->forceDelete();
-        } else {
-            $item->delete();
-        }
-
-        return redirect()->route('board', $boardId);
-    }
-
     public function deletePost(Request $request, Post $item)
     {
-        $topicId = $item->topic->id;
+
+        if ($item->topic_id) {
+            $route = redirect()->route('topic', $item->topic_id);
+        } else {
+            $route = redirect()->route('board', $item->topic->board_id);
+            $item = $item->topic();
+        }
 
         if ($request->get('hard', '0') == 1) {
             $item->forceDelete();
@@ -69,7 +62,8 @@ class TopicController extends Controller
             $item->delete();
         }
 
-         return redirect()->route('topic', $topicId);
+
+        return $route;
     }
 
     public function create(TopicRequest $request)

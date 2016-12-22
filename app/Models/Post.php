@@ -24,7 +24,7 @@ class Post extends Model
     
     public function topic()
     {
-        return $this->belongsTo('LaForum\Models\Topic');
+        return $this->hasOne('LaForum\Models\Topic');
     }
     
     public function children()
@@ -36,5 +36,9 @@ class Post extends Model
         parent::boot();
         Post::observe(new NewPostObserver());
      
+    }
+    
+    public function __toString() {
+        return "";
     }
 }

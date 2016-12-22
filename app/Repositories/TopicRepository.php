@@ -2,7 +2,9 @@
 
 namespace LaForum\Repositories;
 
+use Illuminate\Support\Facades\DB;
 use LaForum\Models\Topic;
+use LaForum\Models\Post;
 
 class TopicRepository extends SearchableRepository
 {
@@ -19,18 +21,35 @@ class TopicRepository extends SearchableRepository
     {
         return [
             'title',
-            'text',
+           /// 'text',
         ];
     }
 
     public function create($data, $user_id)
     {
+
+        DB::beginTransaction();
+
+
+        $post = new Post();
+        $post->text = $data['text'];
+        $post->user_id = $user_id;
+
+
+
+        $post->topic_id = null;
+        $post->save();
+
+
         $topic = new Topic();
         $topic->board_id = $data['board_id'];
         $topic->title = $data['title'];
-        $topic->text = $data['text'];
-        $topic->user_id = $user_id;
+        $topic->post_id = $post->id;
         $topic->save();
+
+
+
+        DB::commit();
 
         return $topic;
     }

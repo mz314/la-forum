@@ -23,6 +23,10 @@ class Topic extends Model
         return $this->belongsTo('LaForum\Models\User');
     }
 
+    public function post() {
+        return $this->hasOne('LaForum\Models\Post', 'id', 'post_id');
+    }
+    
     public function posts()
     {
         return $this->hasMany('LaForum\Models\Post', 'topic_id', 'id');
