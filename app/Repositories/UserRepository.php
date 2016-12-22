@@ -35,6 +35,7 @@ class UserRepository extends SearchableRepository
     {
         $user->name = $data['name'];
         $user->email = $data['email'];
+        $user->about = $data['about'];
 
         if (!empty($data['password'])) {
             $user->password = $this->cryptPassword($data['password']);

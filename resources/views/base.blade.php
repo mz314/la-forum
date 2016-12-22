@@ -19,8 +19,9 @@
             @include('header')
             @show
         </div>
-
+        
         <div class="content">
+
             @yield('content')
         </div>
 

@@ -1,8 +1,10 @@
 <div class="post">
-     <div class="author">
+
+    <a href="{{ URL::action('ProfileController@index', $post->user->name) }}" 
+       class="author">
         <img src="{{$post->user->getAvatar()}}" class="avatar-image" />
         {{$post->user->name}}
-    </div>
+    </a>
     
     <div class="text">
         {!! nl2br(e($post->text)) !!}

@@ -33,7 +33,7 @@ class BoardController extends Controller
     {
         $board = Board::find($id);
 
-        $topics = $board->topics()->paginate(Config::get('paging_default'));
+        $topics = $board->topics()->orderBy('updated_at', 'DESC')->paginate(Config::get('paging_default'));
 
         return View('boards.board',
             [

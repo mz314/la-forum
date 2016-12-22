@@ -18,7 +18,14 @@ LaForum - {{$board->title}}
         @foreach($board_topics as $t)
         <tr>
             <td>
-                <img class="avatar-image" src="{{$t->user->getAvatar()}}" />
+                <a href="{{ URL::action('ProfileController@index', $t->user->name) }}">
+                    <img class="avatar-image" src="{{$t->user->getAvatar()}}" />
+                </a>
+            </td>
+            <td>
+                <a href="{{ URL::action('ProfileController@index', $t->user->name) }}">
+                    {{$t->user->name}}
+                </a>
             </td>
             <td>
                 <a href="{{ URL::route('topic', [$t->id]) }}">
@@ -27,6 +34,9 @@ LaForum - {{$board->title}}
             </td>
             <td>
                 {{ str_limit($t->text, 100) }}
+            </td>
+            <td>
+                {{$t->created_at}}
             </td>
         </tr>
         @endforeach

@@ -1,9 +1,10 @@
 .post {
     margin: 10px 0;
     border: 1px solid black;
+    
     .author {
+        display: block;
         float: left;
-        
     }
     
     .text {
